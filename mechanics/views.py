@@ -28,9 +28,6 @@ class MechanicAPIView(APIView):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
 
-
-  
-
 class MechanicDetailView(APIView):
   
   def get_object(self,pk):
