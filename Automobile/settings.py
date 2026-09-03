@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'customer',
     'vehicles',
     'mechanics',
+    'spareparts',
     'service'
 ]
 
