@@ -2,6 +2,8 @@ from rest_framework.views import APIView
 from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.authentication import BasicAuthentication
+from rest_framework.permissions import IsAuthenticated
 
 from .models import Customer
 from .serializers import CustomerSerializer
@@ -9,6 +11,14 @@ from .serializers import CustomerSerializer
 
 # Create your views here.
 class CustomerApiView(APIView):
+  # authentication_classes = [BasicAuthentication]
+  # permission_classes = [IsAuthenticated]  # Auth Users
+
+  def get(self, request):
+        return Response({
+            "message": "Authenticated!",
+            "user": request.user.username
+        })
   def get(self, request):
     customers = Customer.objects.all()
 

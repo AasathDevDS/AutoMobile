@@ -12,7 +12,7 @@ class Vehicle(models.Model):
         SUV = "SUV", "SUV"
         OTHERS = 'OTHERS','Others'
 
-    customer = models.ForeignKey(
+    customer = models.OneToOneField(
         Customer,
         on_delete=models.CASCADE,
         related_name="vehicles"
