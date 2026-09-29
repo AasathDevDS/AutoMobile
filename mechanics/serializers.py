@@ -6,6 +6,7 @@ class MechanicSerializer(serializers.ModelSerializer):
   class Meta:
     model = Mechanic
     fields = [
+      "id",
       "name",
       "phone",
       "specialization",

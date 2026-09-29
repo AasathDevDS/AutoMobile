@@ -2,28 +2,31 @@ from rest_framework import serializers
 from .models import Service
 
 class ServiceSerializer(serializers.ModelSerializer):
-  class Meta:
-    model = Service
-    fields = "__all__"
+    # 'vehicle' என்ற Foreign Key வழியே நேரடி navigation
+    vehicle_number = serializers.ReadOnlyField(source='vehicle.vehicle_number')
+    vehicle_model = serializers.ReadOnlyField(source='vehicle.model')
+    vehicle_brand = serializers.ReadOnlyField(source='vehicle.brand')
 
-    # def validate_service_date(self,value):
-    #   if value < timezone.now():
-    #     raise serializers.ValidationError(
-    #       "Service date cannot be in the past."
-    #     )
-    #     return value
+    mechanic_name = serializers.CharField(source='mechanic.name', read_only=True)
 
-    def validate_mileage_at_service(self,value):
-      if value < 0:
-        raise serializers.ValidationError(
-          "Mileage at service cannot be negative."
-        )
-      return value
-    
-    def validate_mechanic(self,value):
-      if not value.is_active:
-        raise serializers.ValidationError(
-          "Mechanic is not active."
-        )
-      return value
-
+    class Meta:
+        model = Service
+        fields = [
+            'id', 
+            'vehicle',           # POST / PUT-க்கு Vehicle ID (e.g. 1)
+            'vehicle_number',    # Frontend display (e.g. "BCC-8430")
+            'vehicle_model',     # Frontend display (e.g. "Civic")
+            'vehicle_brand',     # Frontend display (e.g. "Honda")
+            'mechanic',          # Mechanic ID
+            'mechanic_name',     # Frontend display
+            'service_type',
+            'service_date',
+            'status',
+            'estimated_cost',
+            'actual_cost',
+            'mileage_at_service',
+            'problem_description',
+            'notes',
+            'created_at',
+            'updated_at'
+        ]
