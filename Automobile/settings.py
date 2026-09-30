@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'mechanics',
     'spareparts',
     'service',
-    'invoice'
+    'invoice',
+    'dashboard',
 ]
 
 MIDDLEWARE = [
