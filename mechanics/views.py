@@ -4,9 +4,11 @@ from rest_framework.response import Response
 from rest_framework import status
 from .models import Mechanic
 from .serializers import MechanicSerializer
+from rest_framework.permissions import IsAuthenticated
 
 # Create your views here.
 class MechanicAPIView(APIView):
+  permission_classes = [IsAuthenticated]  # Auth Users
   def get(self,request):
     mechanics = Mechanic.objects.all()
 

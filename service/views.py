@@ -3,12 +3,14 @@ from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
 from rest_framework import status
 from django.db.models import Q
+from rest_framework.permissions import IsAuthenticated
 
 from .models import Service
 from .serializers import ServiceSerializer
 
 # Create your views here.
 class ServiceAPIView(APIView):
+  permission_classes = [IsAuthenticated]  
   def get(self, request):
     search = request.query_params.get("search", "").strip()
 

@@ -3,12 +3,14 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.shortcuts import get_object_or_404
 from django.db.models import Q
+from rest_framework.permissions import IsAuthenticated
 
 from .models import SparePart
 from .serializers import SparePartSerializer
 
 
 class SparePartAPIView(APIView):
+    permission_classes = [IsAuthenticated]
 
     def get(self, request):
         search = request.query_params.get("search", "").strip()

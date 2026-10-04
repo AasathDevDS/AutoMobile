@@ -4,6 +4,7 @@ from django.utils import timezone
 from django.db.models import Sum, Count
 from django.db.models import F
 from .serializers import LowStockAlert
+from rest_framework.permissions import IsAuthenticated
 
 # உங்கள் apps-ல் உள்ள models-ஐ import செய்து கொள்ளுங்கள்
 from vehicles.models import Vehicle
@@ -13,6 +14,7 @@ from spareparts.models import SparePart
 from .serializers import RecentServiceSerializer  
 
 class DashboardSummaryView(APIView):
+    permission_classes = [IsAuthenticated] 
     def get(self, request):
         today = timezone.now().date()
         current_month = timezone.now().month
