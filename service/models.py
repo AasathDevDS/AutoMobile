@@ -65,3 +65,30 @@ class Service(models.Model):
             f"{self.service_type} - "
             f"{self.get_status_display()}"
         )
+
+
+from django.core.exceptions import ValidationError
+
+class ServiceSparePart(models.Model):
+    service = models.ForeignKey(
+        Service,
+        related_name="service_parts",
+        on_delete=models.CASCADE
+    )
+    spare_part = models.ForeignKey(
+        "spareparts.SparePart",
+        related_name="service_usages",
+        on_delete=models.PROTECT
+    )
+    quantity = models.PositiveIntegerField(default=1)
+    unit_price = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        # default=0.00
+    )
+
+    class Meta:
+        unique_together = ('service', 'spare_part')
+
+    def __str__(self):
+        return f"{self.spare_part.name} - {self.quantity} units"

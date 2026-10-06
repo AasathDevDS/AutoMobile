@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Service
+from .models import Service , ServiceSparePart
 
 class ServiceSerializer(serializers.ModelSerializer):
     # 'vehicle' என்ற Foreign Key வழியே நேரடி navigation
@@ -30,3 +30,8 @@ class ServiceSerializer(serializers.ModelSerializer):
             'created_at',
             'updated_at'
         ]
+
+class ServiceSpareSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ServiceSparePart
+        fields = '__all__'
