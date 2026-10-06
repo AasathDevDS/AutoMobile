@@ -4,7 +4,6 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.db.models import Q
 from rest_framework.permissions import IsAuthenticated
-from rest_framework import viewsets
 
 from .models import Service
 from .serializers import ServiceSerializer
@@ -69,10 +68,3 @@ class DetailServiceAPIView(APIView):
     service = self.get_object(pk)
     service.delete()
     return Response(status=status.HTTP_204_NO_CONTENT)
-
-
-class ServiceSparePartViewSet(viewsets.ModelViewSet):
-    # permission_classes = [IsAuthenticated]
-    queryset = Service.objects.all()
-    serializer_class = ServiceSerializer
-    

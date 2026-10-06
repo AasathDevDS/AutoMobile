@@ -14,7 +14,7 @@ from spareparts.models import SparePart
 from .serializers import RecentServiceSerializer  
 
 class DashboardSummaryView(APIView):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated] 
     def get(self, request):
         today = timezone.now().date()
         current_month = timezone.now().month

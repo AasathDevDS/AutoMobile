@@ -10,6 +10,7 @@ from .serializers import CustomerSerializer
 
 # Create your views here.
 class CustomerApiView(APIView):
+  # authentication_classes = [BasicAuthentication]
   permission_classes = [IsAuthenticated]  # Auth Users
 
   def get(self, request):
