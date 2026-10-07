@@ -32,4 +32,5 @@ urlpatterns = [
     path('spareparts/' , include("spareparts.urls")),
     path('invoices/' , include("invoice.urls")),
     path('dashboard/' , include("dashboard.urls")),
+    path('service-spare-parts/' , include("service_spare.urls")),
 ]

@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'service',
     'invoice',
     'dashboard',
+    'service_spare',
 ]
 
 MIDDLEWARE = [
