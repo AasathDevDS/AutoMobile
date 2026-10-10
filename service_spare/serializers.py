@@ -5,7 +5,7 @@ from .models import ServiceSpareParts
 
 
 class ServiceSparePartsSerializer(serializers.ModelSerializer):
-
+    spare_part_name = serializers.CharField(source='spare_part.name', read_only=True)
     class Meta:
         model = ServiceSpareParts
         fields = '__all__'

@@ -6,7 +6,7 @@ class ServiceSpareParts(models.Model):
         on_delete=models.CASCADE,
         related_name='spare_parts'
     )
-    spare_part_name = models.ForeignKey(
+    spare_part = models.ForeignKey(
         'spareparts.SparePart',
         on_delete=models.CASCADE,
         related_name='service_spare_parts'
